@@ -15,15 +15,16 @@ const ForgetPassword = () => {
     setError("");
     setLoading(true);
     try {
-      const { data } = await axios.post(
+     
+      axios.post(
         "https://auth-backend-xv7v.onrender.com/auth/forgotpassword",
         { email },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
         }
       );
+
       toast.success(data.message);
     } catch (err) {
       setError(err.response?.data?.message);
