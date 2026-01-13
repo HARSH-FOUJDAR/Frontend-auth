@@ -13,52 +13,66 @@ const ForgetPassword = () => {
     try {
       const { data } = await axios.post(
         "https://auth-backend-xv7v.onrender.com/auth/forgotpassword",
-        { email },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
+        { email }
       );
 
       toast.success(data.message);
       setEmail("");
     } catch (err) {
-      toast.error(
-        err.response?.data?.message || "Something went wrong"
-      );
+      toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md w-96"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Forgot Password
-        </h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md border">
 
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="w-full p-2 border rounded mb-4"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {/* Header */}
+        <div className="border-b px-6 py-4">
+          <h2 className="text-xl font-semibold text-gray-800">
+            Forgot Password
+          </h2>
+          <p className="text-sm text-gray-600 mt-1">
+            Enter your registered email address
+          </p>
+        </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full py-2 rounded text-white ${
-            loading ? "bg-gray-400" : "bg-blue-600"
-          } cursor-pointer`}
-        >
-          {loading ? "Sending..." : "Send Reset Link"}
-        </button>
-      </form>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="px-6 py-6 space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email address
+            </label>
+            <input
+              type="email"
+              placeholder="example@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 rounded-md font-medium text-black ${
+              loading
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-yellow-400 hover:bg-yellow-500"
+            } cursor-pointer`}
+          >
+            {loading ? "Sending..." : "Send Reset Link"}
+          </button>
+        </form>
+
+        {/* Footer */}
+        <div className="border-t px-6 py-4 text-sm text-center text-gray-600">
+          We’ll send you a link to reset your password
+        </div>
+      </div>
     </div>
   );
 };
