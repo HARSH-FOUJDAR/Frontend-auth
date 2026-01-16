@@ -28,6 +28,7 @@ const Signup = () => {
       toast.success(data.message);
       setTimeout(() => navigate("/"), 100); // redirect after signup
     } catch (error) {
+      console.log(error);
       toast.error(error.response?.data?.message || "Signup failed");
     } finally {
       setLoading(false);
