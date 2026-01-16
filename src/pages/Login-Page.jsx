@@ -25,7 +25,7 @@ const Login = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "https://auth-backend-zlre.vercel.app/auth/Login",
+        "https://auth-backend-zlre.vercel.app/auth/login",
         {
           email,
           password,
