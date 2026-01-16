@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
     try {
       const { data } = await axios.post(
-        `https://auth-backend-xv7v.onrender.com/auth/resetpassword/${token}`,
+        `https://auth-backend-zlre.vercel.app/auth/resetpassword/${token}`,
         { newPassword: password }
       );
 
@@ -36,22 +36,22 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md border">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 text-gray-800 dark:text-gray-200">
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
         {/* Header */}
-        <div className="border-b px-6 py-4">
-          <h2 className="text-xl font-semibold text-gray-800">
+        <div className="border-b border-gray-200 dark:border-gray-700 px-6 py-4 text-center">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
             Reset Password
           </h2>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
             Create a new password for your account
           </p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="px-6 py-6 space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+        <form onSubmit={handleSubmit} className="px-6 py-6 space-y-6 relative">
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               New Password
             </label>
             <input
@@ -60,16 +60,24 @@ const ResetPassword = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
             />
 
+            {/* Show/Hide Icon */}
             {showpassword ? (
-              <BiSolidShow onClick={()=>setShowpassword(false)} className="relative bottom-8 cursor-pointer left-89 text-lg"></BiSolidShow>
+              <BiSolidShow
+                onClick={() => setShowpassword(false)}
+                className="absolute top-12 bottom-10 right-3 transform -translate-y-1/2 cursor-pointer text-gray-600 dark:text-gray-300 text-lg"
+              />
             ) : (
-              <FaEyeSlash onClick={()=>setShowpassword(true)} className="relative bottom-7.5 cursor-pointer left-89 text-lg"></FaEyeSlash>
+              <FaEyeSlash
+                onClick={() => setShowpassword(true)}
+                className="absolute top-12 bottom- right-3 transform -translate-y-1/2 cursor-pointer text-gray-600 dark:text-gray-300 text-lg"
+              />
             )}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
@@ -77,18 +85,18 @@ const ResetPassword = () => {
               loading
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-yellow-400 hover:bg-yellow-500"
-            }`}
+            } transition-all duration-200`}
           >
             {loading ? "Resetting..." : "Reset Password"}
           </button>
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 text-sm text-center text-gray-600">
+        <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 text-sm text-center text-gray-600 dark:text-gray-400">
           Your password must be at least 6 characters
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
