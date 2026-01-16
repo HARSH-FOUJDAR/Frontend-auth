@@ -13,7 +13,8 @@ const ForgetPassword = () => {
     try {
       const { data } = await axios.post(
         "https://auth-backend-zlre.vercel.app/auth/forgotpassword",
-        { email }
+        { email },
+        { withCredentials: true }
       );
 
       toast.success(data.message);
@@ -27,7 +28,7 @@ const ForgetPassword = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 text-gray-800 dark:text-gray-200">
-        <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
         {/* Header */}
         <div className="border-b px-6 py-4">
           <h2 className="text-xl font-semibold text-gray-100">
@@ -58,7 +59,9 @@ const ForgetPassword = () => {
             type="submit"
             disabled={loading}
             className={`w-full py-2 rounded-md font-medium text-white ${
-              loading ? "bg-gray-300 cursor-not-allowed" : "bg-orange-600 cursor-pointer"
+              loading
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-orange-600 cursor-pointer"
             } `}
           >
             {loading ? "Sending..." : "Send Reset Link"}

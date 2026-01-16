@@ -22,7 +22,8 @@ const Signup = () => {
         {
           email,
           password,
-        }
+        },
+        { withCredentials: true }
       );
       toast.success(data.message);
       setTimeout(() => navigate("/"), 100); // redirect after signup
