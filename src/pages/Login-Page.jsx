@@ -32,7 +32,6 @@ const Login = () => {
         },
        
       );
-
       toast.success(data.message);
       localStorage.setItem("token", data.token);
 
@@ -44,7 +43,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
