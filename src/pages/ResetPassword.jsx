@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
     try {
       const { data } = await axios.post(
-        `https://auth-backend-zlre.vercel.app/auth/resetpassword/${token}`,
+        `https://auth-backend-zlre.vercel.app/auth/reset-password/${token}`,
         { newPassword: password },
         { withCredentials: true }
       );
